@@ -14,11 +14,20 @@ class CounterPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CounterDisplay(),
+            // Counter controlls
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IncrementButton(),
                 DecrementButton(),
+              ],
+            ),
+            // Undo / redo
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                UndoButton(),
+                RedoButton(),
               ],
             )
           ],
@@ -70,6 +79,38 @@ class DecrementButton extends StatelessWidget {
 
     return TextButton(
       child: Text(buttonLabel),
+      onPressed: onPressed,
+    );
+  }
+}
+
+class UndoButton extends StatelessWidget {
+  const UndoButton({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    onPressed() {
+      context.read<CounterCubit>().undo();
+    }
+
+    return TextButton(
+      child: Icon(Icons.undo),
+      onPressed: onPressed,
+    );
+  }
+}
+
+class RedoButton extends StatelessWidget {
+  const RedoButton({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    onPressed() {
+      context.read<CounterCubit>().redo();
+    }
+
+    return TextButton(
+      child: Icon(Icons.redo),
       onPressed: onPressed,
     );
   }
