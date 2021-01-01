@@ -1,6 +1,9 @@
 # cubit_counter
 
 A new Flutter project.
+This is a basic counter app made using Bloc state management (Cubit). I wanted to try some out of the box features included in the library, mainly out of the box persistent stae and undo / redo capabilities. Even tho HydratedCubit uses Hive to save data, it feels a bit slower than vanilla Hive. 
+
+[![Screenshot-1609527266.png](https://i.postimg.cc/43QLRRdH/Screenshot-1609527266.png)](https://postimg.cc/zL3STMTq)
 
 ## Getting Started
 
