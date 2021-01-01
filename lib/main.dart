@@ -1,3 +1,4 @@
+import 'package:cubit_counter/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: globalLightTheme,
+      darkTheme: globalDarkTheme,
+      debugShowCheckedModeBanner: false,
       home: CounterPage(),
     );
   }
