@@ -10,9 +10,8 @@ void main() async {
   HydratedBloc.storage = await HydratedStorage.build();
 
   runApp(MultiBlocProvider(providers: [
-    BlocProvider(
-      create: (_) => CounterCubit(),
-    )
+    BlocProvider(create: (_) => CounterCubit()),
+    BlocProvider(create: (_) => CounterBloc()),
   ], child: MyApp()));
 }
 
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: globalLightTheme,
       darkTheme: globalDarkTheme,
       debugShowCheckedModeBanner: false,
-      home: CounterPage(),
+      home: BlocCounterPage(),
     );
   }
 }
