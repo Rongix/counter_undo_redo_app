@@ -248,22 +248,24 @@ abstract class _Decrement implements CounterEvent {
   const factory _Decrement() = _$_Decrement;
 }
 
+CounterState _$CounterStateFromJson(Map<String, dynamic> json) {
+  return _State.fromJson(json);
+}
+
 /// @nodoc
 class _$CounterStateTearOff {
   const _$CounterStateTearOff();
 
 // ignore: unused_element
-  _Initial initial([int value = 0]) {
-    return _Initial(
+  _State call(int value) {
+    return _State(
       value,
     );
   }
 
 // ignore: unused_element
-  _Current current(int value) {
-    return _Current(
-      value,
-    );
+  CounterState fromJson(Map<String, Object> json) {
+    return CounterState.fromJson(json);
   }
 }
 
@@ -275,29 +277,7 @@ const $CounterState = _$CounterStateTearOff();
 mixin _$CounterState {
   int get value;
 
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(int value),
-    @required TResult current(int value),
-  });
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(int value),
-    TResult current(int value),
-    @required TResult orElse(),
-  });
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult current(_Current value),
-  });
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult current(_Current value),
-    @required TResult orElse(),
-  });
-
+  Map<String, dynamic> toJson();
   $CounterStateCopyWith<CounterState> get copyWith;
 }
 
@@ -328,49 +308,53 @@ class _$CounterStateCopyWithImpl<$Res> implements $CounterStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> implements $CounterStateCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class _$StateCopyWith<$Res> implements $CounterStateCopyWith<$Res> {
+  factory _$StateCopyWith(_State value, $Res Function(_State) then) =
+      __$StateCopyWithImpl<$Res>;
   @override
   $Res call({int value});
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$CounterStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
+class __$StateCopyWithImpl<$Res> extends _$CounterStateCopyWithImpl<$Res>
+    implements _$StateCopyWith<$Res> {
+  __$StateCopyWithImpl(_State _value, $Res Function(_State) _then)
+      : super(_value, (v) => _then(v as _State));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  _State get _value => super._value as _State;
 
   @override
   $Res call({
     Object value = freezed,
   }) {
-    return _then(_Initial(
+    return _then(_State(
       value == freezed ? _value.value : value as int,
     ));
   }
 }
 
-/// @nodoc
-class _$_Initial implements _Initial {
-  const _$_Initial([this.value = 0]) : assert(value != null);
+@JsonSerializable()
 
-  @JsonKey(defaultValue: 0)
+/// @nodoc
+class _$_State implements _State {
+  const _$_State(this.value) : assert(value != null);
+
+  factory _$_State.fromJson(Map<String, dynamic> json) =>
+      _$_$_StateFromJson(json);
+
   @override
   final int value;
 
   @override
   String toString() {
-    return 'CounterState.initial(value: $value)';
+    return 'CounterState(value: $value)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Initial &&
+        (other is _State &&
             (identical(other.value, value) ||
                 const DeepCollectionEquality().equals(other.value, value)));
   }
@@ -380,180 +364,22 @@ class _$_Initial implements _Initial {
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
 
   @override
-  _$InitialCopyWith<_Initial> get copyWith =>
-      __$InitialCopyWithImpl<_Initial>(this, _$identity);
+  _$StateCopyWith<_State> get copyWith =>
+      __$StateCopyWithImpl<_State>(this, _$identity);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(int value),
-    @required TResult current(int value),
-  }) {
-    assert(initial != null);
-    assert(current != null);
-    return initial(value);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(int value),
-    TResult current(int value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (initial != null) {
-      return initial(value);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult current(_Current value),
-  }) {
-    assert(initial != null);
-    assert(current != null);
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult current(_Current value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
+  Map<String, dynamic> toJson() {
+    return _$_$_StateToJson(this);
   }
 }
 
-abstract class _Initial implements CounterState {
-  const factory _Initial([int value]) = _$_Initial;
+abstract class _State implements CounterState {
+  const factory _State(int value) = _$_State;
+
+  factory _State.fromJson(Map<String, dynamic> json) = _$_State.fromJson;
 
   @override
   int get value;
   @override
-  _$InitialCopyWith<_Initial> get copyWith;
-}
-
-/// @nodoc
-abstract class _$CurrentCopyWith<$Res> implements $CounterStateCopyWith<$Res> {
-  factory _$CurrentCopyWith(_Current value, $Res Function(_Current) then) =
-      __$CurrentCopyWithImpl<$Res>;
-  @override
-  $Res call({int value});
-}
-
-/// @nodoc
-class __$CurrentCopyWithImpl<$Res> extends _$CounterStateCopyWithImpl<$Res>
-    implements _$CurrentCopyWith<$Res> {
-  __$CurrentCopyWithImpl(_Current _value, $Res Function(_Current) _then)
-      : super(_value, (v) => _then(v as _Current));
-
-  @override
-  _Current get _value => super._value as _Current;
-
-  @override
-  $Res call({
-    Object value = freezed,
-  }) {
-    return _then(_Current(
-      value == freezed ? _value.value : value as int,
-    ));
-  }
-}
-
-/// @nodoc
-class _$_Current implements _Current {
-  const _$_Current(this.value) : assert(value != null);
-
-  @override
-  final int value;
-
-  @override
-  String toString() {
-    return 'CounterState.current(value: $value)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _Current &&
-            (identical(other.value, value) ||
-                const DeepCollectionEquality().equals(other.value, value)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
-
-  @override
-  _$CurrentCopyWith<_Current> get copyWith =>
-      __$CurrentCopyWithImpl<_Current>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(int value),
-    @required TResult current(int value),
-  }) {
-    assert(initial != null);
-    assert(current != null);
-    return current(value);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(int value),
-    TResult current(int value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (current != null) {
-      return current(value);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult current(_Current value),
-  }) {
-    assert(initial != null);
-    assert(current != null);
-    return current(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult current(_Current value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (current != null) {
-      return current(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Current implements CounterState {
-  const factory _Current(int value) = _$_Current;
-
-  @override
-  int get value;
-  @override
-  _$CurrentCopyWith<_Current> get copyWith;
+  _$StateCopyWith<_State> get copyWith;
 }

@@ -42,12 +42,8 @@ class BlocCounterDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
-      cubit: BlocProvider.of<CounterBloc>(context),
-      builder: (context, state) => state.when(
-          current: (value) => Text('$value'),
-          initial: (value) => Text('$value')),
-    );
+    return BlocBuilder<CounterBloc, CounterState>(
+        builder: (context, state) => Text(state.value.toString()));
   }
 }
 
