@@ -9,18 +9,22 @@ part 'counter_state.dart';
 part 'counter_bloc.freezed.dart';
 part 'counter_bloc.g.dart';
 
-class CounterBloc extends Bloc<CounterEvent, CounterState>
+class CounterBloc extends Bloc<CounterEvent2, CounterState>
     with ReplayBlocMixin, HydratedMixin {
   CounterBloc() : super(CounterState(0));
 
   @override
   Stream<CounterState> mapEventToState(
-    CounterEvent event,
+    CounterEvent2 event,
   ) async* {
-    yield event.when(
-      increment: () => CounterState(state.value + 1),
-      decrement: () => CounterState(state.value - 1),
-    );
+    switch (event.type) {
+      case CounterEvent2Enum.increment:
+        yield CounterState(state.value + 1);
+        break;
+      case CounterEvent2Enum.decrement:
+        yield CounterState(state.value - 1);
+        break;
+    }
   }
 
   @override

@@ -55,7 +55,7 @@ class BlocIncrementButton extends StatelessWidget {
     String buttonLabel = "Increment";
 
     onPressed() {
-      BlocProvider.of<CounterBloc>(context).add(CounterEvent.increment());
+      BlocProvider.of<CounterBloc>(context).add(CounterEvent2.increment());
     }
 
     return TextButton(
@@ -73,7 +73,7 @@ class BlocDecrementButton extends StatelessWidget {
     String buttonLabel = "Decrement";
 
     onPressed() {
-      BlocProvider.of<CounterBloc>(context).add(CounterEvent.decrement());
+      BlocProvider.of<CounterBloc>(context).add(CounterEvent2.decrement());
     }
 
     return TextButton(
